@@ -15,7 +15,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
 
     if @schedule.save
-      redirect_to schedules_url, notice: "スケジュール「#{schedule.name}」を登録しました。"
+      redirect_to schedules_url, notice: "スケジュール「#{@schedule.name}」を登録しました。"
     else
       render :new
     end
@@ -33,7 +33,7 @@ class SchedulesController < ApplicationController
 
   def destroy 
     schedule = Schedule.find(params[:id])
-    schedule.destroy
+    schedule.destroy!
     redirect_to schedules_url, notice: "スケジュール「#{schedule.name}を削除しました。」"
   end
 
