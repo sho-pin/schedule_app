@@ -1,0 +1,31 @@
+h1 スケジュールの詳細
+
+.nav.justify-content-end
+  = link_to  '一覧', schedules_path, class: 'nav-link'
+table.table.tabel-hover
+  tbody
+    tr
+      th= Schedule.human_attribute_name(:id)
+      td= @schedule.id
+    tr
+      th= Schedule.human_attribute_name(:name)
+      td= @schedule.name
+    tr
+      th= Schedule.human_attribute_name(:start_date)
+      td= @schedule.start_date
+    tr
+      th= Schedule.human_attribute_name(:end_date)
+      td= @schedule.end_date
+    tr
+      th= Schedule.human_attribute_name(:description)
+      td= simple_format(h(@schedule.description), (), sanitize: false, wrappper_tag: "div")
+    tr
+      th= Schedule.human_attribute_name(:created_at)
+      td= @schedule.created_at
+    tr
+      th= Schedule.human_attribute_name(:updated_at)
+      td= @schedule.updated_at
+
+= link_to  '編集', edit_schedule_path, class: 'btn btn-primary me-3' 
+= link_to  '削除', @schedule, method: :delete, data: { confirm: "スケジュール「#{@schedule.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' 
+

@@ -1,0 +1,25 @@
+h1 スケジュール一覧
+
+= link_to  "新規登録", new_schedule_path, class: 'btn btn-primary ' 
+
+.mb-3 
+table.table.table-hover
+  thead.thead-default
+    tr 
+      th= Schedule.human_attribute_name(:id)
+      th= Schedule.human_attribute_name(:name)
+      th= Schedule.human_attribute_name(:start_date)
+      th= Schedule.human_attribute_name(:end_date)
+      th= Schedule.human_attribute_name(:created_at)
+      th
+  tbody
+    - @schedules.each do |schedule|
+      tr
+        td= schedule.id
+        td= link_to schedule.name, schedule
+        td= schedule.start_date
+        td= schedule.end_date
+        td= schedule.created_at
+        td 
+          = link_to  '編集', edit_schedule_path(schedule), class: 'btn btn-primary me-3' 
+          = link_to  "削除", schedule, method: :delete, data: { confirm: "スケジュール「#{schedule.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' 
